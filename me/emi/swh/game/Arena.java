@@ -206,14 +206,12 @@ public class Arena {
                         List<String> msg = Main.getInstance().getConfig().getStringList("messages.winnermessage");
 
                             getIngame().remove(p.getName());
-                            for(int i=0; i<msg.size();i++){
-                                String text = msg.get(i);
-                                p.sendMessage(ChatColor.translateAlternateColorCodes('&', text.replaceAll("%player%", p.getName()).replaceAll("%kills", String.valueOf(getKills().get(p.getName())))));
-                            }
-
-
-
-
+                           if(p != null){
+                               for(int i=0; i<msg.size();i++){
+                                   String text = msg.get(i);
+                                   p.sendMessage(ChatColor.translateAlternateColorCodes('&', text.replaceAll("%player%", p.getName()).replaceAll("%kills", String.valueOf(getKills().get(p.getName())))));
+                               }
+                           }
 
                     updateSign();
                     p.teleport(getMainLobbySpawn());
