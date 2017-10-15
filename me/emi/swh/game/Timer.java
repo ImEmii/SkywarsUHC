@@ -11,7 +11,6 @@ public class Timer extends BukkitRunnable{
     private Arena arena;
 
     private int lobbyTimeLeft;
-    private int cornTimeLeft;
     private int gameTimeLeft;
     private int endTimeLeft;
     private int restartingTimeLeft;
@@ -23,7 +22,6 @@ public class Timer extends BukkitRunnable{
         this.arena = arena;
 
         this.lobbyTimeLeft = 60;
-        this.cornTimeLeft = 15;
         this.gameTimeLeft = 300;
         this.endTimeLeft = 10;
         this.restartingTimeLeft = 20;
@@ -51,22 +49,6 @@ public class Timer extends BukkitRunnable{
                         }
 
 
-                        arena.setState(GameState.Corn);
-                        arena.updateSign();
-                        //TODO: Send players to spawn
-                    }
-                    for(String s : arena.getIngame()){
-                        Player p = Bukkit.getPlayer(s);
-                        if (p != null){
-                            WaitingBore.updateScoreboard(p);
-                        }
-                    }
-                    break;
-                case Corn:
-                    if(cornTimeLeft != 0){
-                        cornTimeLeft--;
-                    }else{
-
                         arena.setState(GameState.Starter);
                         arena.updateSign();
                         //TODO: Send players to spawn
@@ -84,12 +66,14 @@ public class Timer extends BukkitRunnable{
                     }else{
                         arena.setState(GameState.End);
                         arena.updateSign();
-                        for(String s : arena.getIngame()){
-                            Player p = Bukkit.getPlayer(s);
-                            if (p != null){
-                                arena.endArena(p);
-                            }
-                        }
+                       if(arena.getIngame().size() != 0){
+                           for(String s : arena.getIngame()){
+                               Player p = Bukkit.getPlayer(s);
+                               if (p != null){
+                                   arena.endArena(p);
+                               }
+                           }
+                       }
                         //TODO: Send players to spawn
                     }
                     for(String s : arena.getIngame()){

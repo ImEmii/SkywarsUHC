@@ -74,10 +74,10 @@ public class WaitingBore {
         obj.getScore(ChatColor.DARK_BLUE.toString()).setScore(8);
 
         Team line = board.registerNewTeam("line");
-        line.addEntry("§m------------");
-        line.setPrefix("");
+        line.addEntry("§m");
+        line.setPrefix("§m------------");
         line.setSuffix("§m------------");
-        obj.getScore("§m------------").setScore(9);
+        obj.getScore("§m").setScore(9);
 
         p.setScoreboard(board);
 

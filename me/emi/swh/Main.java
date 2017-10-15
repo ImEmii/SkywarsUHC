@@ -41,7 +41,7 @@ public class Main extends JavaPlugin implements Listener {
         Bukkit.getConsoleSender().sendMessage("§a==============");
 
         registerListener(new PlayerInteract(this), new SignChange(), new PlayerDamage(),
-                new PlayerFood(), new PlayerDeath(), new PlayerMove(), new PlayerDrop(),
+                new PlayerFood(), new PlayerDeath(), new PlayerDrop(),
                 new PlayerPickup(), new PlayerBreak(), new PlayerPlace());
         getCommand("skywarshardcore").setExecutor(new SwhCommand());
 

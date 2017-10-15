@@ -130,23 +130,15 @@ public class Arena {
         return spectators;
     }
 
-    public void getScenarios(String scenarioname){
-        Scenarios.get(scenarioname);
-    }
-    public void addScenario(String scenarioname, Integer value){
-        if(value.equals(0) || value.equals(1)){
-            Scenarios.put(scenarioname, value);
-        }
-    }
-
-    public void addSpectator(Player p){
-        if(this != null){
-            spectators.add(p.getName());
-        }
-    }
 
     public Location getMainLobbySpawn() {
         return Main.getInstance().unserializeLocation(Main.getInstance().getConfig().getString("arenas."+getName()+".mainlobby"));
+    }
+
+    public void addSpectator(Player p){
+        if(!spectators.contains(p.getName())){
+            spectators.add(p.getName());
+        }
     }
 
     public void setMainLobbySpawn(Location mainLobbySpawn) {
@@ -162,7 +154,6 @@ public class Arena {
                     broadcast("§a"+p.getName()+"entro al juego"+getIngame().size()+"/"+getMaxPlayers());
                     kills.put(p.getName(), 0);
 
-                    WaitingBore.ScoreNull(p);
                     WaitingBore.onWaiting(p);
 
                     p.teleport(getLobbySpawn());
@@ -213,9 +204,8 @@ public class Arena {
                 if(getIngame().contains(p.getName())){
                     WaitingBore.ScoreNull(p);
                         List<String> msg = Main.getInstance().getConfig().getStringList("messages.winnermessage");
-                        for(String s : getIngame()){
+
                             getIngame().remove(p.getName());
-                            Player server = Bukkit.getPlayer(s);
                             for(int i=0; i<msg.size();i++){
                                 String text = msg.get(i);
                                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', text.replaceAll("%player%", p.getName()).replaceAll("%kills", String.valueOf(getKills().get(p.getName())))));
@@ -223,7 +213,7 @@ public class Arena {
 
 
 
-                    }
+
 
                     updateSign();
                     p.teleport(getMainLobbySpawn());

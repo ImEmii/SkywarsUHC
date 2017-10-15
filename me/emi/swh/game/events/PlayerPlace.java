@@ -16,7 +16,7 @@ public class PlayerPlace implements Listener{
 
         Arena arena = Main.getInstance().getArenaManager().getArenaByPlayer(p.getName());
         if(arena != null){
-            if(arena.getState() == GameState.Waiting || arena.getState() == GameState.Corn){
+            if(arena.getState() == GameState.Waiting){
                 e.setCancelled(true);
             }
         }
