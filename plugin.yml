@@ -1,0 +1,9 @@
+name: SkywarsHardcore
+main: me.emi.swh.Main
+version: 1.0
+author: ImEmii
+commands:
+   skywarshardcore:
+      description: Main command for the plugin
+      usage: §a/swh
+      aliases: [swh]

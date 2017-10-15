@@ -1,0 +1,19 @@
+messages:
+  #Variables: '&' for color. '{error}' for set error.
+  errormessage: '&6[&6&lSkywarsUHC&6] &cSorry but have a error: &e{error}&c.'
+  #Variables: '&' for color. '{arenaname}' for get name of arena. '{maxplayers}' for get maxplayers.
+  arenacreate: '&6[&6&lSkywarsUHC&6] &e{arenaname} &asuccessfully create with &e{maxplayers} &aslots!'
+  #Variables: '&' for color. '{arenaname}' for get name of arena.
+  arenadelete: '&6[&6&lSkywarsUHC&6] &e{arenaname} &asuccessfully removed.'
+  #Variables: '&' for color. 'arenaname'for get name of arena. '{spawns}' for get spawns|maxspawns.
+  addspawn: '&6[&6&lSkywarsUHC&6] &e{arenaname} &asuccessfully added spawn. &e{spawns} &a!'
+  #Variables: '&' for color. '{arenaname}' for get name of arena.
+  addlobby: '&6[&6&lSkywarsUHC&6] &e{arenaname} &asuccessfully added lobby!'
+  #Variables: '&' for color. '{player' for get name of the player.'{players}' get in game players .'{maxplayers}' for get maxplayers.
+  playerleave: '&6[&6&lSkywarsUHC&6] {player} exit to main lobby {players}/{maxplayers}'
+
+  winnermessage:
+    - "&m                                                                "
+    - "&6[&6&lSkywarsUHC&6] &aCongratulations %player% winner this match!"
+    - "                  &aKills by %player%: %kills%                    "
+    - "&m                                                                "
