@@ -3,6 +3,7 @@ package me.emi.swh.game.events;
 import me.emi.swh.Main;
 import me.emi.swh.game.Arena;
 import org.bukkit.Material;
+import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,27 +29,30 @@ public class PlayerInteract implements Listener{
 
                 FileConfiguration config = Main.getInstance().getConfig();
 
+
+
                 String block = Main.getInstance().serializeLocation(e.getClickedBlock().getLocation());
 
                 for(String arena : config.getConfigurationSection("arenas").getKeys(true)){
 
                     Arena arenaObj = Main.getInstance().getArenaManager().getArenaByName(arena);
 
-                    if(arenaObj != null){
-                        if(config.getString("arenas."+arena+".sign").equals(block)){
+                        if(arenaObj != null){
+                            if(config.getString("arenas."+arena+".sign").equals(block)){
 
-                            if(arenaObj.getSign() != null){
+                                if(arenaObj.getSign() != null){
 
-                                arenaObj.joinPlayer(p);
+                                    arenaObj.joinPlayer(p);
 
 
-                                arenaObj.getSign().setLine(3, "§e"+arenaObj.getIngame().size()+"/"+arenaObj.getMaxPlayers());
+                                    arenaObj.getSign().setLine(3, "§e"+arenaObj.getIngame().size()+"/"+arenaObj.getMaxPlayers());
 
-                                arenaObj.getSign().update(true);
+                                    arenaObj.getSign().update(true);
 
+                                }
                             }
                         }
-                    }
+
                 }
             }
         }

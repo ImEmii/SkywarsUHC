@@ -1,12 +1,17 @@
 package me.emi.swh.game;
 
 import me.emi.swh.Main;
+import me.emi.swh.game.events.PlayerPlace;
 import me.emi.swh.game.scoreboards.WaitingBore;
 import org.bukkit.Bukkit;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class Timer extends BukkitRunnable{
+public class Timer extends BukkitRunnable implements Listener{
 
     private Arena arena;
 
@@ -21,10 +26,10 @@ public class Timer extends BukkitRunnable{
 
         this.arena = arena;
 
-        this.lobbyTimeLeft = 60;
+        this.lobbyTimeLeft = 10;
         this.gameTimeLeft = 300;
-        this.endTimeLeft = 10;
-        this.restartingTimeLeft = 20;
+        this.endTimeLeft = 5;
+        this.restartingTimeLeft = 5;
 
         this.pause = true;
 
@@ -61,8 +66,8 @@ public class Timer extends BukkitRunnable{
                     }
                     break;
                 case Starter:
-                    if(lobbyTimeLeft != 0){
-                        lobbyTimeLeft--;
+                    if(gameTimeLeft != 0){
+                        gameTimeLeft--;
                     }else{
                         arena.setState(GameState.End);
                         arena.updateSign();
@@ -70,7 +75,7 @@ public class Timer extends BukkitRunnable{
                            for(String s : arena.getIngame()){
                                Player p = Bukkit.getPlayer(s);
                                if (p != null){
-                                   arena.endArena(p);
+
                                }
                            }
                        }
@@ -96,6 +101,7 @@ public class Timer extends BukkitRunnable{
                         Player p = Bukkit.getPlayer(s);
                         if (p != null){
                             WaitingBore.updateScoreboard(p);
+                            arena.endArena(p);
                         }
                     }
                     break;
@@ -106,6 +112,7 @@ public class Timer extends BukkitRunnable{
                         arena.setState(GameState.Waiting);
                         arena.updateSign();
                         setPause(true);
+
                     }
                     for(String s : arena.getIngame()){
                         Player p = Bukkit.getPlayer(s);

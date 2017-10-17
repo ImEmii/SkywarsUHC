@@ -1,2 +1,4 @@
 
 me/emi/swh/game/events/PlayerMove.java
+me/emi/swh/game/KitsSetting.java
+me/emi/swh/utils/KitsConfig.java

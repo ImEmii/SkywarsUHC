@@ -13,8 +13,13 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,6 +49,7 @@ public class Main extends JavaPlugin implements Listener {
                 new PlayerFood(), new PlayerDeath(), new PlayerDrop(),
                 new PlayerPickup(), new PlayerBreak(), new PlayerPlace());
         getCommand("skywarshardcore").setExecutor(new SwhCommand());
+
 
     }
 
@@ -82,6 +88,7 @@ public class Main extends JavaPlugin implements Listener {
             for(String arena : config.getConfigurationSection("arenas").getKeys(false)){
                 new Arena(arena, unserializeLocation(config.getString("arenas."+arena+".lobbyspawn")),
                         unserializeLocation(config.getString("arenas."+arena+".lobbyspawn")),
+                        unserializeLocation(config.getString("arenas."+arena+".specspawn")),
                         listStrToLocs(config.getStringList("arenas."+arena+".spawns"))
                         , config.getInt("arenas."+arena+".maxplayers"),
                         config.getString("arenas."+arena+".sign").equals("NOEXIST") ? null : (Sign)unserializeLocation(config.getString("arenas."+arena+".sign"))
@@ -154,4 +161,6 @@ public class Main extends JavaPlugin implements Listener {
 
         return toReturn;
     }
+
+
 }

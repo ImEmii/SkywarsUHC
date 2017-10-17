@@ -1,3 +1,6 @@
+prefixs:
+  spectator: '§7[SPEC]§8'
+  live: '§a[LIVE]§8'
 messages:
   #Variables: '&' for color. '{error}' for set error.
   errormessage: '&6[&6&lSkywarsUHC&6] &cSorry but have a error: &e{error}&c.'
